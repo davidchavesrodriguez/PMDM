@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">UD1_1_HolaMundo</string>
+    <string name="saludo">¡Hola, mundo!</string>
+</resources>

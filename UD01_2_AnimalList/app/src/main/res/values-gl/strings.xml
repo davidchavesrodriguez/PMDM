@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">UD01_2_ListaDeAnimais</string>
+    <string name="sendButton">Enviar</string>
+    <string name="selectText">Elixe un animal para revisar: </string>
+</resources>
