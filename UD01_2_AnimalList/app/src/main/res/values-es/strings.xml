@@ -2,4 +2,9 @@
     <string name="app_name">UD01_2_ListaDeAnimales</string>
     <string name="sendButton">Enviar</string>
     <string name="selectText">Elige un animal para revisar: </string>
+    <string-array name="animalList">
+        <item>Perros</item>
+        <item>Gatos</item>
+        <item>Patos</item>
+    </string-array>
 </resources>

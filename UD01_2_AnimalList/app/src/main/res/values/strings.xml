@@ -2,4 +2,9 @@
     <string name="app_name">UD01_2_AnimalList</string>
     <string name="sendButton">Send</string>
     <string name="selectText">Pick an animal to look up: </string>
+    <string-array name="animalList">
+        <item>Dogs</item>
+        <item>Cats</item>
+        <item>Ducks</item>
+    </string-array>
 </resources>

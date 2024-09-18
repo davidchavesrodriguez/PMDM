@@ -19,7 +19,9 @@
         android:padding="12dp"
         android:id="@+id/animalList"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:entries="@array/animalList"
+        />
 
     <Button
         android:padding="12dp"
