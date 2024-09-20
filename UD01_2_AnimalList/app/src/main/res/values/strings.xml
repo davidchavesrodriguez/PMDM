@@ -1,10 +1,25 @@
 <resources>
     <string name="app_name">UD01_2_AnimalList</string>
-    <string name="sendButton">Send</string>
-    <string name="selectText">Pick an animal to look up: </string>
-    <string-array name="animalList">
+    <string name="buttonSend">Send</string>
+    <string name="textSelect">Pick an animal to look up: </string>
+    <string-array name="listAnimals">
         <item>Dogs</item>
         <item>Cats</item>
         <item>Ducks</item>
+    </string-array>
+    <string-array name="dogBreeds">
+        <item>Chihuahua</item>
+        <item>Pit bull</item>
+        <item>Bulldog</item>
+    </string-array>
+    <string-array name="catBreeds">
+        <item>Sphynx</item>
+        <item>Persian</item>
+        <item>Orange</item>
+    </string-array>
+    <string-array name="duckBreeds">
+        <item>Mallard</item>
+        <item>White Call</item>
+        <item>Swedish Blue</item>
     </string-array>
 </resources>
