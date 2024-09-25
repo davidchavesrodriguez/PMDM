@@ -10,9 +10,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
-    val RUNNING_KEY= "running"
-    val OFFSET_KEY= "offset"
-    val BASE_KEY= "base"
+    val RUNNING_KEY = "running"
+    val OFFSET_KEY = "offset"
+    val BASE_KEY = "base"
 
     private lateinit var chronometer: Chronometer
     private var running = false
@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
     }
 
+    // onCreate: Initialize the activity and set up the user interface
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,19 +37,18 @@ class MainActivity : AppCompatActivity() {
 
         chronometer = findViewById<Chronometer>(R.id.chronometerMain)
 
-        if (savedInstanceState!=null){
-            offset= savedInstanceState.getLong(OFFSET_KEY)
-            running= savedInstanceState.getBoolean(RUNNING_KEY)
-            if (running){
-                chronometer.base= savedInstanceState.getLong(BASE_KEY)
+        if (savedInstanceState != null) {
+            offset = savedInstanceState.getLong(OFFSET_KEY)
+            running = savedInstanceState.getBoolean(RUNNING_KEY)
+            if (running) {
+                chronometer.base = savedInstanceState.getLong(BASE_KEY)
                 chronometer.start()
             } else {
-                // FIXME:  else branch not working correctly. Chrono keeps updating even paused
-                chronometer.base= savedInstanceState.getLong(BASE_KEY) -offset
+                chronometer.base = SystemClock.elapsedRealtime() - offset
             }
         }
 
-        // Button Functions
+        // Button Functions: Set up click listeners for start, pause, and restart buttons
         val buttonStart = findViewById<Button>(R.id.buttonStart)
         buttonStart.setOnClickListener {
             if (!running) {
@@ -76,5 +76,41 @@ class MainActivity : AppCompatActivity() {
             chronometer.base = SystemClock.elapsedRealtime()
             offset = 0L
         }
+    }
+
+    // onStop: Save the current state of the chronometer if the activity is going to the background
+    override fun onStop() {
+        if (running) {
+            offset = SystemClock.elapsedRealtime() - chronometer.base
+            chronometer.stop()
+        }
+        super.onStop()
+    }
+
+    // onRestart: Restore the state of the chronometer when coming back from the background
+    override fun onRestart() {
+        if (running) {
+            chronometer.base = SystemClock.elapsedRealtime() - offset
+            chronometer.start()
+        }
+        super.onRestart()
+    }
+
+    // onPause: Stop the chronometer if the activity is no longer in focus
+    override fun onPause() {
+        if (running) {
+            offset = SystemClock.elapsedRealtime() - chronometer.base
+            chronometer.stop()
+        }
+        super.onPause()
+    }
+
+    // onResume: Restart the chronometer if the activity is coming back into focus
+    override fun onResume() {
+        if (running) {
+            chronometer.base = SystemClock.elapsedRealtime() - offset
+            chronometer.start()
+        }
+        super.onResume()
     }
 }
