@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">UD02_4_LinearLayoutPractice</string>
+    <string name="textContact">Julito Lorcho</string>
+    <string name="textNumber">675654329</string>
+    <string name="descriptionProfile">Profile picture</string>
+    <string name="textCall">Llamar</string>
+</resources>
