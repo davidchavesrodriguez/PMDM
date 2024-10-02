@@ -4,4 +4,5 @@
     <string name="textNumber">675654329</string>
     <string name="descriptionProfile">Profile picture</string>
     <string name="textCall">Llamar</string>
+    <string name="textCalling">Llamando a: </string>
 </resources>
