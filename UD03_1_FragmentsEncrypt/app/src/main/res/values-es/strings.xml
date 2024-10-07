@@ -3,5 +3,6 @@
     <string name="welcome_text">Bienvenido a la app Secret Message! Usa esta app para encriptar un mensaje secreto</string>
     <string name="start">Inicio</string>
     <string name="next">Siguiente</string>
+    <string name="enter_message">Hola, soy un mensaje</string>
     <string name="encrypt_text">Aquí está tu mensaje encriptado!</string>
 </resources>
