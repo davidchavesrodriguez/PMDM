@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nameFragment">
+
+    <fragment
+        android:id="@+id/nameFragment"
+        android:name="com.example.ud03_practica_creaciondecuentos.NameFragment"
+        android:label="NameFragment" >
+        <action
+            android:id="@+id/action_nameFragment_to_themeFragment"
+            app:destination="@id/themeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/themeFragment"
+        android:name="com.example.ud03_practica_creaciondecuentos.ThemeFragment"
+        android:label="ThemeFragment" >
+        <action
+            android:id="@+id/action_themeFragment_to_storyFragment"
+            app:destination="@id/storyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storyFragment"
+        android:name="com.example.ud03_practica_creaciondecuentos.StoryFragment"
+        android:label="StoryFragment" >
+        <action
+            android:id="@+id/action_storyFragment_to_nameFragment"
+            app:destination="@id/nameFragment" />
+    </fragment>
+</navigation>

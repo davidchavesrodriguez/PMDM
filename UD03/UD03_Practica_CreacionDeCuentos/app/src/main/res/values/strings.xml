@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">UD03_Practica_CreacionDeCuentos</string>
+    <string name="text_name">Tell me your name</string>
+    <string name="text_button_next">Next</string>
+    <string name="text_theme_title">Pick a theme:</string>
+    <string name="text_theme_forest">Scary Forest</string>
+    <string name="text_theme_house">Horror\'s House</string>
+    <string name="text_theme_nightosphere">Nightosphere</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
