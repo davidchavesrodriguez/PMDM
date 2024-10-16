@@ -27,5 +27,11 @@
         <action
             android:id="@+id/action_storyFragment_to_nameFragment"
             app:destination="@id/nameFragment" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="theme"
+            app:argType="string" />
     </fragment>
 </navigation>
