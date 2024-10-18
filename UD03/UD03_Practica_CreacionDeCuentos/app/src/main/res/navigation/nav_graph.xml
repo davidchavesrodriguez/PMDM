@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/nameFragment"
         android:name="com.example.ud03_practica_creaciondecuentos.NameFragment"
-        android:label="NameFragment" >
+        android:label="NameFragment">
         <action
             android:id="@+id/action_nameFragment_to_themeFragment"
             app:destination="@id/themeFragment" />
@@ -15,15 +15,18 @@
     <fragment
         android:id="@+id/themeFragment"
         android:name="com.example.ud03_practica_creaciondecuentos.ThemeFragment"
-        android:label="ThemeFragment" >
+        android:label="ThemeFragment">
         <action
             android:id="@+id/action_themeFragment_to_storyFragment"
             app:destination="@id/storyFragment" />
+        <argument
+            android:name="name"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/storyFragment"
         android:name="com.example.ud03_practica_creaciondecuentos.StoryFragment"
-        android:label="StoryFragment" >
+        android:label="StoryFragment">
         <action
             android:id="@+id/action_storyFragment_to_nameFragment"
             app:destination="@id/nameFragment" />
