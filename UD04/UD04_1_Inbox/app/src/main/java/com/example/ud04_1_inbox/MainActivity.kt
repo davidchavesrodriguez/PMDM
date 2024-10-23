@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar // Import MaterialToolbar from the Material Design library
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,12 +20,19 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge() // Activates edge-to-edge mode
         setContentView(R.layout.activity_main) // Set the layout for the activity
 
-        // Find the MaterialToolbar in the layout and set it as the ActionBar
+        // Top Bar
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        // Nav controller
         val navHostFragment= supportFragmentManager.findFragmentById(R.id.container_fragments) as NavHostFragment
         val navController= navHostFragment.navController
         toolbar.setupWithNavController(navController)
+
+        // Bottom bar
+        val bottomBar= findViewById<BottomNavigationView>(R.id.bottomBar)
+        bottomBar.setupWithNavController(navController)
+
 
 
         // Set a listener to apply window insets to the main view
