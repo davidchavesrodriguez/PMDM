@@ -5,17 +5,26 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.core.content.pm.ShortcutInfoCompat.Surface
 import com.example.ud07_1_compose.ui.theme.UD07_1_ComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,56 +42,79 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun myApp(modifier: Modifier) {
-   Greeting(listOf("World", "Sabela"), modifier)
+fun welcomeScreen(modifier: Modifier, onContinueClicked: () -> Unit) {
+    Surface(color = Color.LightGray) {
+        Column(modifier = modifier.fillMaxSize()) {
+            Text(text = "Hola")
+            ElevatedButton(
+                modifier = Modifier.padding(20.dp),
+                onClick = onContinueClicked
+            ) {
+                Text(text = "Siguiente")
+            }
+        }
+    }
 }
 
 @Composable
-fun Greeting(names: List<String>, modifier: Modifier = Modifier) {
-    Surface(color = MaterialTheme.colorScheme.primary) {
+fun myApp(modifier: Modifier) {
+    var nextWelcomeScreen = rememberSaveable {
+        mutableStateOf(false)
+    }
+    if (!nextWelcomeScreen.value) {
+        welcomeScreen(modifier,
+            onContinueClicked = {
+                nextWelcomeScreen.value = true
+            })
+    } else {
+        ListItems()
+    }
+}
 
-        Column (modifier.fillMaxSize()){
-            for (name in names)(
-                Text(
-                    text = "Hello $name",
-                    textAlign = TextAlign.Center
-                )
-            )
+@Composable
+fun ListItems(names: List<String> = List(100) { "$it" }, modifier: Modifier = Modifier) {
+    LazyColumn {
+        items(items = names) { name ->
+            Greeting(name = name)
+        }
+    }
+}
+
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    val expanded = remember {
+        mutableStateOf(false)
+    }
+
+    var extraPadding = if (expanded.value) {
+        50.dp
+    } else {
+        0.dp
+    }
+    Surface(
+        color = MaterialTheme.colorScheme.primary,
+        modifier = Modifier.padding(3.dp)
+    ) {
+
+        Row {
+            Column(
+                modifier = Modifier.weight(1f)
+                    .padding(bottom = extraPadding)
+            ) {
+                Text(text = "Hello, ")
+                Text(text = name)
+            }
             ElevatedButton(onClick = {
+                expanded.value = !expanded.value
+            }) {
+                if (expanded.value) {
+                    Text(text = "Show Less")
+                } else {
+                    Text(text = "Show More")
+                }
 
-            }){
-                Text(text = "Show more")
             }
         }
-
-//        Row {
-//            Text(
-//                text = stringResource(R.string.hello).plus(", ").plus(name),
-//                modifier = modifier
-//                    .padding(16.dp)
-//                    .size(80.dp),
-//                style = TextStyle(
-//                    fontSize = 20.sp,
-//                    fontWeight = FontWeight.Bold,
-//                    fontStyle = FontStyle.Italic,
-//                    color = Color.White,
-//                    shadow = Shadow(
-//                        color = Color.Gray,
-//                        offset = Offset(4.0f, 4.0f),
-//                        blurRadius = 6f
-//                    )
-//                )
-//            )
-//            Text(
-//                text = stringResource(R.string.poem),
-//                modifier = modifier.padding(15.dp).size(1000.dp),
-//                style = TextStyle(
-//                    brush = Brush.linearGradient(listOf(Color.Red, Color.Yellow, Color.Green))
-//                ),
-//                textAlign = TextAlign.Left
-//            )
-//        }
-
     }
 }
 
@@ -90,6 +122,6 @@ fun Greeting(names: List<String>, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     UD07_1_ComposeTheme {
-        myApp(Modifier)
+        myApp(modifier = Modifier.fillMaxSize())
     }
 }
